@@ -1,11 +1,9 @@
 
-
-
 library(pcalg)
 
-setwd("/Users/louksmalbil/Desktop/CDVAE/R/ArchivedData")
-data <- read.csv(file = 'combined_nn_5.csv', header = FALSE)
-data <- data[2:21]
+setwd("/Users/louksmalbil/Desktop/CDVAE/R/ArchivedData/Hidden_Var_Data")
+data <- read.csv(file = 'combined_hidden_nn_3.csv', header = FALSE)
+data <- data[2:18]
 head(data)
 
 n <- nrow(data)
@@ -20,13 +18,6 @@ fci.fit <- fci(suffStat,
                alpha=0.01, labels = V, verbose = TRUE)
 
 end_time <- Sys.time()
-
-as(fci.cpdag, "amat")
-amat <- wgtMatrix(fci.fit, transpose = TRUE)
-amat <- replace(amat, amat == 1, 1)
-amat <- replace(amat, amat == 2, 0)
-amat <- replace(amat, amat == 3, 1)
-amat <- t(amat)
 
 setwd("/Users/louksmalbil/Desktop/CDVAE/R/")
 write.csv(amat, 'predicted.csv')
